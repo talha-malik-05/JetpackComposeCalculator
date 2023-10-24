@@ -1,5 +1,6 @@
 package com.mt.jetpackcomposecalculator.calculator
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,14 +42,16 @@ fun MyCalculator(
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)
         ) {
             Text(
-                text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
+                text = state.number1 + if (state.operation == null) "" else (state.operation.symbol ?: "") + state.number2,
                 color = Color.White,
-                fontSize = 80.sp,
+                fontSize = 60.sp,
                 fontWeight = FontWeight.Light,
                 textAlign = TextAlign.End,
+                lineHeight = 50.sp,
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(vertical = 32.dp).weight(1f),
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(vertical = 16.dp),
                 maxLines = 2
             )
             Row(
